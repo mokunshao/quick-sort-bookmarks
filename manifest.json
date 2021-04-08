@@ -1,0 +1,16 @@
+{
+  "browser_action": {
+    "default_icon": "assets/image/icon48.png",
+    "default_popup": "popup.html"
+  },
+  "description": "sort bookmarks",
+  "icons": {
+    "128": "assets/image/icon128.png",
+    "16": "assets/image/icon16.png",
+    "48": "assets/image/icon48.png"
+  },
+  "manifest_version": 2,
+  "name": "Sort Bookmarks",
+  "permissions": ["bookmarks"],
+  "version": "0.0.1"
+}
