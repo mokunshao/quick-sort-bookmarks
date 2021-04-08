@@ -30,49 +30,46 @@ function is_root(node) {
 }
 
 function comparator(a, b) {
+  var sort = 0;
   var isFolderA = a.url === undefined;
   var isFolderB = b.url === undefined;
   if (isFolderA && isFolderB) {
-    if (a.title < b.title) {
+    var titleA = a.title;
+    var titleB = b.title;
+    if (titleA < titleB) {
       sort = -1;
-    } else if (a.title > b.title) {
+    } else if (titleA > titleB) {
       sort = 1;
-    } else {
-      sort = 0;
     }
   } else if (isFolderA && !isFolderB) {
     sort = -1;
   } else if (!isFolderA && isFolderB) {
     sort = 1;
   } else {
-    if (a.url < b.url) {
+    var urlA = a.url;
+    var urlB = b.url;
+    if (urlA < urlB) {
       sort = -1;
-    } else if (a.url > b.url) {
+    } else if (urlA > urlB) {
       sort = 1;
-    } else {
-      sort = 0;
     }
   }
   return sort;
 }
 
 function sortChildren(parent) {
-  if (
-    !parent ||
-    !is_folder(parent) ||
-    is_root(parent) ||
-    parent.children.length <= 1
-  ) {
+  var children = parent.children;
+  var childrenLength = children.length;
+  if (!parent || !is_folder(parent) || is_root(parent) || childrenLength <= 1) {
     return;
   }
 
-  parent.children.sort(comparator);
-
-  for (var i in parent.children) {
-    var child = parent.children[i];
-    if (i == child.index) {
+  children.sort(comparator);
+  for (var i = 0; i < childrenLength; i++) {
+    var child = children[i];
+    if (i === child.index) {
       continue;
     }
-    chrome.bookmarks.move(child.id, { index: parseInt(i) });
+    chrome.bookmarks.move(child.id, { index: i });
   }
 }
