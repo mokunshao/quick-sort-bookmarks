@@ -44,13 +44,14 @@ function comparator(a, b) {
     sort = -1;
   } else if (!isFolderA && isFolderB) {
     sort = 1;
-  }
-  if (a.url < b.url) {
-    sort = -1;
-  } else if (a.url > b.url) {
-    sort = 1;
   } else {
-    sort = 0;
+    if (a.url < b.url) {
+      sort = -1;
+    } else if (a.url > b.url) {
+      sort = 1;
+    } else {
+      sort = 0;
+    }
   }
   return sort;
 }
