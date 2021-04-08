@@ -30,8 +30,8 @@ function is_root(node) {
 }
 
 function comparator(a, b) {
-  var isFolderA = a.url === undefined ? true : false;
-  var isFolderB = b.url === undefined ? true : false;
+  var isFolderA = a.url === undefined;
+  var isFolderB = b.url === undefined;
   if (isFolderA && isFolderB) {
     if (a.title < b.title) {
       sort = -1;
@@ -49,6 +49,8 @@ function comparator(a, b) {
     sort = -1;
   } else if (a.url > b.url) {
     sort = 1;
+  } else {
+    sort = 0;
   }
   return sort;
 }
